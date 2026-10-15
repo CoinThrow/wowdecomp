@@ -13,11 +13,13 @@
   (21,424 OFFSET occurrences across 1,317 files, measured 2026-10-15).
 - **The reconstruction ("recon")** — `G:\REPO\ascension-extensions-reconstruction` — a function-by-function C++
   reconstruction of Project Ascension's `Extensions.dll` (32-bit; loaded by `Ascension.exe` via a `LoadLibrary`
-  cave at `0x4E5CB0`). Coverage: **1,277 Lua natives** (167 registered into the glue state, the rest into the
-  world state), **530 packet handlers** (opcodes > `0x55E`, routed via detours on `0x631FA0`/`0x631FE0`),
-  **400 client hooks** (404 install sites), **93 CVars** (19 glue / 74 world), **639 byte-patch diffs**
-  (407 of them `E9` jumps), plus DBC/data machinery. `docs/DLL_REFERENCE.md` (709 KB) indexes everything to
-  file:line. **Read-only behavioral source of truth for this campaign.**
+  cave at `0x4E5CB0`). Coverage (ground truth = the machine-generated reference totals, verified 2026-10-15):
+  **1,346 Lua bindings** (167 into the glue state), **533 server packet handlers + 151 client packet senders**
+  (opcodes > `0x55E`, routed via detours on `0x631FA0`/`0x631FE0`), **266 events**, **93 CVars** (19 glue /
+  74 world), **347 client hooks**, **639 byte-patch diffs** (407 of them `E9` jumps), across **136 modules**.
+  (The README's headline 1,277 / 530 / 400 counts a narrower registrar/install-site set; totals are reconciled
+  during M0 triage.) `docs/DLL_REFERENCE.md` (709 KB, generated from source) indexes everything to file:line.
+  **Read-only behavioral source of truth for this campaign.**
 - **Pinned references:** recon `main` @ `b20b3c7` (behavior baseline; includes the *inert* kill switch per the
   2026-09-28 user decision) and recon `full-anticheat` @ `6a764ef` (active kill switch with the captured
   server allow-list — reference data only, **not** ported active). Port base: wowdecomp `main` @ `0e4e9fe`.
